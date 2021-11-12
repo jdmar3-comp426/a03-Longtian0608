@@ -31,7 +31,14 @@ let obj = {
 };
 /*console.log("removeKey(obj, password): ");
 console.log(removeKey(obj,'password'));*/
+
+/*
 obj = removeKeyNonDestructive(obj, 'password');
 console.log("removeKeyNonDestructive(obj, 'password'): ");
 console.log(obj);
 console.log(removeKeyNonDestructive(obj,'password'));
+*/
+
+import {removeKeys} from "./src/mild/mild_2.js";
+console.log("removeKeys(obj, ['password', 'age']): ");
+console.log(removeKeys(obj, ['password', 'age']));
