@@ -42,3 +42,15 @@ console.log(removeKeyNonDestructive(obj,'password'));
 import {removeKeys} from "./src/mild/mild_2.js";
 console.log("removeKeys(obj, ['password', 'age']): ");
 console.log(removeKeys(obj, ['password', 'age']));
+
+import { getSum } from "./src/medium/medium_1.js";
+console.log("getSum([2,2,5,2,5,6,9]): ");
+console.log(getSum([2,2,5,2,5,6,9]));
+
+import { getMedian } from "./src/medium/medium_1.js";
+console.log("getMedian([3,2,5,6,2,7,4,2,7,6])");
+console.log(getMedian([3,2,5,6,2,7,4,2,7,6]));
+
+import { getStatistics } from "./src/medium/medium_1.js";
+console.log("getStatistics([3,2,4,5,5,5,2,6,7]): ");
+console.log(getStatistics([3,2,4,5,5,5,2,6,7]));
