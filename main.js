@@ -54,3 +54,9 @@ console.log(getMedian([3,2,5,6,2,7,4,2,7,6]));
 import { getStatistics } from "./src/medium/medium_1.js";
 console.log("getStatistics([3,2,4,5,5,5,2,6,7]): ");
 console.log(getStatistics([3,2,4,5,5,5,2,6,7]));
+
+import { allCarStats } from "./src/medium/medium_2.js";
+console.log("allCarStats.avgMpg: ");
+console.log(allCarStats.avgMpg);
+console.log(allCarStats.allYearStats);
+console.log(allCarStats.ratioHybrids);

@@ -24,6 +24,24 @@ export const allCarStats = {
     allYearStats: undefined,
     ratioHybrids: undefined,
 };
+    let sumCity = 0;
+    let sumHighway = 0;
+    let arrYear = [];
+    let numberHybrids = 0;
+    mpg_data.forEach((item)=>{
+        sumCity+=item.city_mpg;
+        sumHighway += item.highway_mpg
+        arrYear.push(item.year);
+        if (item.hybrid){
+            numberHybrids++;
+        }
+    })
+    allCarStats['avgMpg'] = {
+        city: sumCity/mpg_data.length,
+        highway: sumHighway/mpg_data.length
+    }
+    allCarStats['allYearStats'] = getStatistics(arrYear);
+    allCarStats['ratioHybrids'] = numberHybrids/mpg_data.length;
 
 
 /**
