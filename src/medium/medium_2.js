@@ -105,3 +105,54 @@ export const moreStats = {
     makerHybrids: undefined,
     avgMpgByYearAndHybrid: undefined
 };
+    let output = [];
+    mpg_data.forEach((item)=>{
+        if (item['hybrid']){
+            //判断make
+            let key = item['make'];
+            let count = 0;
+            output.forEach((currentCheck)=>{
+            if (currentCheck['make'] == key){
+                count++;
+                currentCheck['hybrids'].push(item['id']);
+            }
+        })
+            if (!count){ //count = 0
+                let newObj = {
+                    make: key,  
+                    hybrids: [item['id']]
+                }
+                output.push(newObj);
+            }
+        }
+    })
+        output.sort((firstItem,secondItem)=>{
+            return secondItem.hybrids.length - firstItem.hybrids.length;
+        })
+        moreStats['makerHybrids']= output; 
+
+
+
+
+        let countHybrid = {}
+        let count = {}
+        let a = mpg_data.reduce ((previousValue,currentValue)=>{
+            let currentYear = currentValue['year'];
+            if (!previousValue[currentYear]){
+                previousValue[currentYear] = {}
+                countHybrid[currentYear] = 0;
+                count[currentYear] = 0;
+            }   
+                if (currentValue['hybrid']){
+                    count[currentYear]++;
+                    previousValue[currentYear]['hybrid']['city'] += currentValue['city_mpg']/countHybrid[currentYear];
+                    previousValue[currentYear]['hybrid']['highway'] += currentYear['highway_mpg']/countHybrid[currentYear];
+                } else {
+                    count[currentYear]++;
+                    previousValue[currentYear]['notHybrid']['city'] += currentValue['city_mpg']/count[currentYear];
+                    previousValue[currentYear]['notHybrid']['highway'] += currentValue['highway_mpg']/count[currentYear];
+                }
+                return previousValue;
+        },{})
+
+        moreStats['avgMpgByYearAndHybrid'] = a;

@@ -60,3 +60,10 @@ console.log("allCarStats.avgMpg: ");
 console.log(allCarStats.avgMpg);
 console.log(allCarStats.allYearStats);
 console.log(allCarStats.ratioHybrids);
+
+import { moreStats } from "./src/medium/medium_2.js";
+console.log ("moreStats.makerHybrids: ");
+console.log (moreStats.makerHybrids);
+
+console.log ("moreStats.avgMpgByYearAndHybrid: ");
+console.log (moreStats.avgMpgByYearAndHybrid);
