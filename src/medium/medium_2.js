@@ -156,3 +156,5 @@ export const moreStats = {
         },{})
 
         moreStats['avgMpgByYearAndHybrid'] = a;
+        //check
+        
