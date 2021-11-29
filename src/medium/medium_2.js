@@ -1,5 +1,5 @@
 import mpg_data from "./data/mpg_data.js";
-import {getStatistics} from "./medium_1.js";
+import {getStatistics, getSum} from "./medium_1.js";
 
 /*
 This section can be done by using the array prototype functions.
@@ -101,10 +101,12 @@ export const allCarStats = {
  *
  * }
  */
+
 export const moreStats = {
     makerHybrids: undefined,
     avgMpgByYearAndHybrid: undefined
 };
+
     let output = [];
     mpg_data.forEach((item)=>{
         if (item['hybrid']){
@@ -131,7 +133,7 @@ export const moreStats = {
         })
         moreStats['makerHybrids']= output; 
 
-
+        
 
         /*
         let countHybrid = {}
@@ -158,3 +160,56 @@ export const moreStats = {
         moreStats['avgMpgByYearAndHybrid'] = a;
         */
         
+        
+        let arrayYear = mpg_data.reduce((previousCar,currentCar)=> {
+                let currentyear = currentCar.year;
+                //find the corresponding year element that matches with the year of currentcar, undefined if not found
+                let value = previousCar.find(elem => Object.keys(elem)[0] == currentyear)
+               if (value == undefined) {
+                   let newObj = {
+                       [currentyear]: {
+                           hybrid:[],
+                           notHybrid: []
+                       }
+                   }
+                previousCar.push(newObj)
+               }
+                 if (currentCar.hybrid){
+                   value[currentyear].hybrid.push({city:currentCar.city_mpg,highway:currentCar.highway_mpg})
+                 }
+                 else{
+                    previousCar.find(elem => Object.keys(elem)[0] == currentyear)[currentyear].notHybrid.push({city:currentCar.city_mpg,highway:currentCar.highway_mpg})
+                 }
+               return previousCar
+             }, [])
+            
+            let result = {};
+            for (let i=0; i<arrayYear.length; i++){
+                let currentyear = Object.keys(arrayYear[i])[0]
+                let hybrid_avg = getSum(arrayYear[i][currentyear].hybrid)/arrayYear[i][currentyear].hybrid.length;
+                let notHybrid_avg = getSum(arrayYear[i][currentyear].notHybrid)/arrayYear[i][currentyear].notHybrid.length;
+                result[[currentyear]] = {
+                    hybrid: hybrid_avg,
+                    notHybrid: notHybrid_avg
+                }
+            }
+            
+             /*
+             avg
+             arrayYear.reduce( (previousValue, currentValue) =>{
+                let key = currentValue[currentyear]
+                if(!previousValue[key]){
+                    previousValue[key] = {}
+                  //p1[cy].hybrid={city:p2[cy].hybrid.map(element => element.city).reduce((a, b) => a + b, 0)/p2[cy].hybrid.length, highway:p2[cy].hybrid.map(element => element.highway).reduce((a, b) => a + b, 0)/p2[cy].hybrid.length}
+                  //p1[cy].notHybrid={city:p2[cy].notHybrid.map(element => element.city).reduce((a, b) => a + b, 0)/p2[cy].notHybrid.length, highway:p2[cy].notHybrid.map(element => element.highway).reduce((a, b) => a + b, 0)/p2[cy].notHybrid.length}
+                }
+                 previousValue[key]={hybrid:{city:p2[cy].hybrid.map(element => element.city).reduce((a, b) => a + b, 0)/p2[cy].hybrid.length, highway:p2[cy].hybrid.map(element => element.highway).reduce((a, b) => a + b, 0)/p2[cy].hybrid.length},
+                    notHybrid:{city:p2[cy].notHybrid.map(element => element.city).reduce((a, b) => a + b, 0)/p2[cy].notHybrid.length, highway:p2[cy].notHybrid.map(element => element.highway).reduce((a, b) => a + b, 0)/p2[cy].notHybrid.length}}
+                
+                return p1;
+              },{})
+*/          
+              moreStats['avgMpgByYearAndHybrid'] = result;
+
+            
+         
