@@ -133,3 +133,5 @@ let mpg_data = [
     }]
 console.log(searchName(mpg_data,'Audi'));
 
+import { repeatDemo } from "./src/spicy/spicy_9.js";
+console.log(repeatDemo());
