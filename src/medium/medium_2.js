@@ -133,7 +133,7 @@ export const moreStats = {
 
 
 
-
+        /*
         let countHybrid = {}
         let count = {}
         let a = mpg_data.reduce ((previousValue,currentValue)=>{
@@ -156,5 +156,5 @@ export const moreStats = {
         },{})
 
         moreStats['avgMpgByYearAndHybrid'] = a;
-        //check
+        */
         
