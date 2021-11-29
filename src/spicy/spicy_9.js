@@ -47,7 +47,6 @@ export const repeatDemo = () => {
  */
 export const multiplyBy = (num1) => {
     function fn(num2) {
-        console.log("num2: "+num2)
         return num2*num1;
     }
     return fn;
