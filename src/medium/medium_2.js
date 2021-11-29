@@ -132,33 +132,6 @@ export const moreStats = {
             return secondItem.hybrids.length - firstItem.hybrids.length;
         })
         moreStats['makerHybrids']= output; 
-
-        
-
-        /*
-        let countHybrid = {}
-        let count = {}
-        let a = mpg_data.reduce ((previousValue,currentValue)=>{
-            let currentYear = currentValue['year'];
-            if (!previousValue[currentYear]){
-                previousValue[currentYear] = {}
-                countHybrid[currentYear] = 0;
-                count[currentYear] = 0;
-            }   
-                if (currentValue['hybrid']){
-                    count[currentYear]++;
-                    previousValue[currentYear]['hybrid']['city'] += currentValue['city_mpg']/countHybrid[currentYear];
-                    previousValue[currentYear]['hybrid']['highway'] += currentYear['highway_mpg']/countHybrid[currentYear];
-                } else {
-                    count[currentYear]++;
-                    previousValue[currentYear]['notHybrid']['city'] += currentValue['city_mpg']/count[currentYear];
-                    previousValue[currentYear]['notHybrid']['highway'] += currentValue['highway_mpg']/count[currentYear];
-                }
-                return previousValue;
-        },{})
-
-        moreStats['avgMpgByYearAndHybrid'] = a;
-        */
         
         
         let arrayYear = mpg_data.reduce((previousCar,currentCar)=> {
@@ -201,13 +174,12 @@ export const moreStats = {
                     previousValue[currentyear] = {}
                 }
                   previousValue[currentyear].hybrid={
-                      city:currentValue[currentyear].hybrid.map(elem => elem.city).reduce((a, b) => a + b, 0)/currentValue[currentyear].hybrid.length, 
-                      highway:currentValue[currentyear].hybrid.map(elem => elem.highway).reduce((a, b) => a + b, 0)/currentValue[currentyear].hybrid.length}
+                    city:currentValue[currentyear].hybrid.map(elem => elem.city).reduce((a, b) => a + b, 0)/currentValue[currentyear].hybrid.length, 
+                    highway:currentValue[currentyear].hybrid.map(elem => elem.highway).reduce((a, b) => a + b, 0)/currentValue[currentyear].hybrid.length}
                   
-                      previousValue[currentyear].notHybrid={
-                      city:currentValue[currentyear].notHybrid.map(elem => elem.city).reduce((a, b) => a + b, 0)/currentValue[currentyear].notHybrid.length, 
+                    previousValue[currentyear].notHybrid={
+                    city:currentValue[currentyear].notHybrid.map(elem => elem.city).reduce((a, b) => a + b, 0)/currentValue[currentyear].notHybrid.length, 
                     highway:currentValue[currentyear].notHybrid.map(elem => elem.highway).reduce((a, b) => a + b, 0)/currentValue[currentyear].notHybrid.length}
-                
                 
                 return previousValue;
               },{})
