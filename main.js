@@ -135,3 +135,9 @@ console.log(searchName(mpg_data,'Audi'));
 
 import { repeatDemo } from "./src/spicy/spicy_9.js";
 console.log(repeatDemo());
+import { multiplyBy } from "./src/spicy/spicy_9.js";
+import { tenTimes } from "./src/spicy/spicy_9.js";
+import { tenTimesFifty } from "./src/spicy/spicy_9.js";
+
+console.log('tenTimesFifty: ');
+console.log(tenTimesFifty());

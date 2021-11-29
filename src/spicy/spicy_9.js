@@ -28,13 +28,7 @@ export const repeat = (fn, n, ...params) => {
  *   10 times.
  */
 export const repeatDemo = () => {
-    repeat(fn,10,[]);
-
-    function fn (){
-        console.log('Hello, world!');
-    }
-
-    }
+    repeat(()=>console.log ("Hello, world!"),10,[]);
 
 };
 
@@ -52,7 +46,11 @@ export const repeatDemo = () => {
  *   product of num1 and num2.
  */
 export const multiplyBy = (num1) => {
-
+    function fn(num2) {
+        console.log("num2: "+num2)
+        return num2*num1;
+    }
+    return fn;
 };
 
 
@@ -60,15 +58,16 @@ export const multiplyBy = (num1) => {
  * Use the multiplyBy function to create and export a function named
  *   "tenTimes" that multiplies a number by 10.
  */
-export const tenTimes = undefined;
-
+export const tenTimes = (num) => {
+    return multiplyBy(10)(num);
+}
 
 /**
  * Write and export a function named "tenTimesFifty" which uses the tenTimes
  *   function to multiply 50 by 10 and returns the result.
  */
 export const tenTimesFifty = () => {
-
+    return tenTimes(50);
 };
 
 
