@@ -70,4 +70,66 @@ console.log (moreStats.avgMpgByYearAndHybrid);
 
 import { searchName } from "./src/medium/medium_3.js";
 console.log ("searchName(mpg_data,'Audi')");
+let mpg_data = [
+    {
+        "city_mpg": 18,
+        "classification": "Automatic transmission",
+        "driveline": "All-wheel drive",
+        "engine_type": "Audi 3.2L 6 cylinder 250hp 236ft-lbs",
+        "fuel_type": "Gasoline",
+        "height": 140,
+        "highway_mpg": 25,
+        "horsepower": 250,
+        "hybrid": false,
+        "id": "2009 Audi A3 3.2",
+        "length": 143,
+        "make": "Audi",
+        "model_year": "2009 Audi A3",
+        "number_of_forward_gears": 6,
+        "torque": 236,
+        "transmission": "6 Speed Automatic Select Shift",
+        "width": 202,
+        "year": 2009
+    },
+    {
+        "city_mpg": 22,
+        "classification": "Automatic transmission",
+        "driveline": "Front-wheel drive",
+        "engine_type": "Audi 2.0L 4 cylinder 200 hp 207 ft-lbs Turbo",
+        "fuel_type": "Gasoline",
+        "height": 140,
+        "highway_mpg": 28,
+        "horsepower": 200,
+        "hybrid": false,
+        "id": "2009 Audi A3 2.0 T AT",
+        "length": 143,
+        "make": "Audi",
+        "model_year": "2009 Audi A3",
+        "number_of_forward_gears": 6,
+        "torque": 207,
+        "transmission": "6 Speed Automatic Select Shift",
+        "width": 202,
+        "year": 2009
+    },
+    {
+        "city_mpg": 21,
+        "classification": "Manual transmission",
+        "driveline": "Front-wheel drive",
+        "engine_type": "Audi 2.0L 4 cylinder 200 hp 207 ft-lbs Turbo",
+        "fuel_type": "Gasoline",
+        "height": 140,
+        "highway_mpg": 30,
+        "horsepower": 200,
+        "hybrid": false,
+        "id": "2009 Audi A3 2.0 T",
+        "length": 143,
+        "make": "Audi",
+        "model_year": "2009 Audi A3",
+        "number_of_forward_gears": 6,
+        "torque": 207,
+        "transmission": "6 Speed Manual",
+        "width": 202,
+        "year": 2009
+    }]
 console.log(searchName(mpg_data,'Audi'));
+
