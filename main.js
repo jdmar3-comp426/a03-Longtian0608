@@ -67,3 +67,7 @@ console.log (moreStats.makerHybrids);
 
 console.log ("moreStats.avgMpgByYearAndHybrid: ");
 console.log (moreStats.avgMpgByYearAndHybrid);
+
+import { searchName } from "./src/medium/medium_3.js";
+console.log ("searchName(mpg_data,'Audi')");
+console.log(searchName(mpg_data,'Audi'));
