@@ -53,7 +53,7 @@ export function searchMpg(car_data, minCity, minHighway) {
  */
 export function searchName(car_data, searchTerm) {
     let result = [];
-    car_data.array.forEach(element => {
+    car_data.forEach(element => {
         if (element.id.toLoweCase().includes(searchTerm.toLoweCase())){
             result.push(element);
         }
