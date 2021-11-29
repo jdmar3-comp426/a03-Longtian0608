@@ -183,33 +183,39 @@ export const moreStats = {
                return previousCar
              }, [])
             
-            let result = {};
+            /*let result = {};
             for (let i=0; i<arrayYear.length; i++){
-                let currentyear = Object.keys(arrayYear[i])[0]
-                let hybrid_avg = getSum(arrayYear[i][currentyear].hybrid)/arrayYear[i][currentyear].hybrid.length;
-                let notHybrid_avg = getSum(arrayYear[i][currentyear].notHybrid)/arrayYear[i][currentyear].notHybrid.length;
-                result[[currentyear]] = {
+                let currentyear = Object.keys(arrayYear[i])[0];
+                let hybrid_avg = getAvg(arrayYear[i][currentyear].hybrid)
+                let notHybrid_avg = getAvg(arrayYear[i][currentyear].notHybrid)
+                result[currentyear] = {
                     hybrid: hybrid_avg,
                     notHybrid: notHybrid_avg
                 }
-            }
+            }*/
             
-             /*
-             avg
-             arrayYear.reduce( (previousValue, currentValue) =>{
-                let key = currentValue[currentyear]
-                if(!previousValue[key]){
-                    previousValue[key] = {}
-                  //p1[cy].hybrid={city:p2[cy].hybrid.map(element => element.city).reduce((a, b) => a + b, 0)/p2[cy].hybrid.length, highway:p2[cy].hybrid.map(element => element.highway).reduce((a, b) => a + b, 0)/p2[cy].hybrid.length}
-                  //p1[cy].notHybrid={city:p2[cy].notHybrid.map(element => element.city).reduce((a, b) => a + b, 0)/p2[cy].notHybrid.length, highway:p2[cy].notHybrid.map(element => element.highway).reduce((a, b) => a + b, 0)/p2[cy].notHybrid.length}
+             
+            let result =  arrayYear.reduce(function (previousValue, currentValue) {
+                let currentyear = Object.keys(currentValue)[0]
+                if(!previousValue[currentyear]){
+                    previousValue[currentyear] = {}
                 }
-                 previousValue[key]={hybrid:{city:p2[cy].hybrid.map(element => element.city).reduce((a, b) => a + b, 0)/p2[cy].hybrid.length, highway:p2[cy].hybrid.map(element => element.highway).reduce((a, b) => a + b, 0)/p2[cy].hybrid.length},
-                    notHybrid:{city:p2[cy].notHybrid.map(element => element.city).reduce((a, b) => a + b, 0)/p2[cy].notHybrid.length, highway:p2[cy].notHybrid.map(element => element.highway).reduce((a, b) => a + b, 0)/p2[cy].notHybrid.length}}
+                  previousValue[currentyear].hybrid={
+                      city:currentValue[currentyear].hybrid.map(elem => elem.city).reduce((a, b) => a + b, 0)/currentValue[currentyear].hybrid.length, 
+                      highway:currentValue[currentyear].hybrid.map(elem => elem.highway).reduce((a, b) => a + b, 0)/currentValue[currentyear].hybrid.length}
+                  
+                      previousValue[currentyear].notHybrid={
+                      city:currentValue[currentyear].notHybrid.map(elem => elem.city).reduce((a, b) => a + b, 0)/currentValue[currentyear].notHybrid.length, 
+                    highway:currentValue[currentyear].notHybrid.map(elem => elem.highway).reduce((a, b) => a + b, 0)/currentValue[currentyear].notHybrid.length}
                 
-                return p1;
+                
+                return previousValue;
               },{})
-*/          
+        
               moreStats['avgMpgByYearAndHybrid'] = result;
+
+              
+
 
             
          
