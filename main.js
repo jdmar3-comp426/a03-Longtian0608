@@ -141,3 +141,8 @@ import { tenTimesFifty } from "./src/spicy/spicy_9.js";
 
 console.log('tenTimesFifty: ');
 console.log(tenTimesFifty());
+
+import { everyEven } from "./src/spicy/spicy_9.js";
+console.log("everyEven([1, 5, 1, 0, 1], x => x === 1)");
+console.log(everyEven([1, 5, 1, 0, 1], x => x === 1));
+console.log(everyEven([1, 1, 0, 1, 1], x => x === 1));
