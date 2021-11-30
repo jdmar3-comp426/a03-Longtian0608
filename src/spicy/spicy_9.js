@@ -156,8 +156,8 @@ export const someEven = (arr, test) => {
  */
 export const filter = (arr, test) => {
     let output = {
-        fail: [],
-        pass: []
+        pass: [],
+        fail: []
     }
     for (let i=0; i<arr.length; i++){
         if (test(arr[i])){
