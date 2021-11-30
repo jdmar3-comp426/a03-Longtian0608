@@ -133,7 +133,7 @@ let mpg_data = [
     }]
 console.log(searchName(mpg_data,'Audi'));
 
-import { repeatDemo } from "./src/spicy/spicy_9.js";
+import { anEvenIsOdd, repeatDemo, someEven } from "./src/spicy/spicy_9.js";
 console.log(repeatDemo());
 import { multiplyBy } from "./src/spicy/spicy_9.js";
 import { tenTimes } from "./src/spicy/spicy_9.js";
@@ -146,3 +146,9 @@ import { everyEven } from "./src/spicy/spicy_9.js";
 console.log("everyEven([1, 5, 1, 0, 1], x => x === 1)");
 console.log(everyEven([1, 5, 1, 0, 1], x => x === 1));
 console.log(everyEven([1, 1, 0, 1, 1], x => x === 1));
+
+console.log("test: ")
+console.log(someEven([3, 0, 0, 0, 0],x=>x%2===1));
+console.log(someEven([3, 3, 2, 1, 0], x => x === 3) )
+console.log(anEvenIsOdd([2, 3, 2, 1, 1]));
+console.log(anEvenIsOdd([1, 0, 1, 0, 1]));
