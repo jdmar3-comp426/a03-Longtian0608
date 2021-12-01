@@ -137,7 +137,7 @@ export const moreStats = {
         let arrayYear = mpg_data.reduce((previousCar,currentCar)=> {
                 let currentyear = currentCar.year;
                 //find the corresponding year element that matches with the year of currentcar, undefined if not found
-                let value = previousCar.find(elem => Object.keys(elem)[0] == currentyear)
+                let value = previousCar.find(elem => Object.keys(elem)[0] == currentyear)                        
                if (value == undefined) {
                    let newObj = {
                        [currentyear]: {
@@ -147,27 +147,17 @@ export const moreStats = {
                    }
                 previousCar.push(newObj)
                }
+               //update value
+                value = previousCar.find(elem => Object.keys(elem)[0] == currentyear)
                  if (currentCar.hybrid){
                    value[currentyear].hybrid.push({city:currentCar.city_mpg,highway:currentCar.highway_mpg})
                  }
                  else{
-                    previousCar.find(elem => Object.keys(elem)[0] == currentyear)[currentyear].notHybrid.push({city:currentCar.city_mpg,highway:currentCar.highway_mpg})
+                    value[currentyear].notHybrid.push({city:currentCar.city_mpg,highway:currentCar.highway_mpg})
                  }
                return previousCar
              }, [])
-            
-            /*let result = {};
-            for (let i=0; i<arrayYear.length; i++){
-                let currentyear = Object.keys(arrayYear[i])[0];
-                let hybrid_avg = getAvg(arrayYear[i][currentyear].hybrid)
-                let notHybrid_avg = getAvg(arrayYear[i][currentyear].notHybrid)
-                result[currentyear] = {
-                    hybrid: hybrid_avg,
-                    notHybrid: notHybrid_avg
-                }
-            }*/
-            
-             
+              
             let result =  arrayYear.reduce(function (previousValue, currentValue) {
                 let currentyear = Object.keys(currentValue)[0]
                 if(!previousValue[currentyear]){
