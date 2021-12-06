@@ -1,5 +1,5 @@
 import mpg_data from "./data/mpg_data.js";
-import {getStatistics} from "./medium_1.js";
+import {getStatistics, getSum} from "./medium_1.js";
 
 /*
 This section can be done by using the array prototype functions.
@@ -24,6 +24,24 @@ export const allCarStats = {
     allYearStats: undefined,
     ratioHybrids: undefined,
 };
+    let sumCity = 0;
+    let sumHighway = 0;
+    let arrYear = [];
+    let numberHybrids = 0;
+    mpg_data.forEach((item)=>{
+        sumCity+=item.city_mpg;
+        sumHighway += item.highway_mpg
+        arrYear.push(item.year);
+        if (item.hybrid){
+            numberHybrids++;
+        }
+    })
+    allCarStats['avgMpg'] = {
+        city: sumCity/mpg_data.length,
+        highway: sumHighway/mpg_data.length
+    }
+    allCarStats['allYearStats'] = getStatistics(arrYear);
+    allCarStats['ratioHybrids'] = numberHybrids/mpg_data.length;
 
 
 /**
@@ -83,7 +101,79 @@ export const allCarStats = {
  *
  * }
  */
+
 export const moreStats = {
     makerHybrids: undefined,
     avgMpgByYearAndHybrid: undefined
 };
+
+    let output = [];
+    mpg_data.forEach((item)=>{
+        if (item['hybrid']){
+            //判断make
+            let key = item['make'];
+            let count = 0;
+            output.forEach((currentCheck)=>{
+            if (currentCheck['make'] == key){
+                count++;
+                currentCheck['hybrids'].push(item['id']);
+            }
+        })
+            if (!count){ //count = 0
+                let newObj = {
+                    make: key,  
+                    hybrids: [item['id']]
+                }
+                output.push(newObj);
+            }
+        }
+    })
+        output.sort((firstItem,secondItem)=>{
+            return secondItem.hybrids.length - firstItem.hybrids.length;
+        })
+        moreStats['makerHybrids']= output; 
+        
+        
+        let arrayYear = mpg_data.reduce((previousCar,currentCar)=> {
+                let currentyear = currentCar.year;
+                //find the corresponding year element that matches with the year of currentcar, undefined if not found
+                let value = previousCar.find(elem => Object.keys(elem)[0] == currentyear)                        
+               if (value == undefined) {
+                   let newObj = {
+                       [currentyear]: {
+                           hybrid:[],
+                           notHybrid: []
+                       }
+                   }
+                previousCar.push(newObj)
+               }
+               //update value
+                value = previousCar.find(elem => Object.keys(elem)[0] == currentyear)
+                 if (currentCar.hybrid){
+                   value[currentyear].hybrid.push({city:currentCar.city_mpg,highway:currentCar.highway_mpg})
+                 }
+                 else{
+                    value[currentyear].notHybrid.push({city:currentCar.city_mpg,highway:currentCar.highway_mpg})
+                 }
+               return previousCar
+             }, [])
+             
+              
+        let result = {};
+            for (let i=0; i<arrayYear.length; i++){
+                let currentyear = Object.keys(arrayYear[i])[0];
+                let hybrid_city_avg = getSum(arrayYear[i][currentyear].hybrid.map(elem=>elem.city))/arrayYear[i][currentyear].hybrid.length;
+                let hybrid_highway_avg = getSum(arrayYear[i][currentyear].hybrid.map(elem=>elem.highway))/arrayYear[i][currentyear].hybrid.length;
+                let notHybrid_city_avg = getSum(arrayYear[i][currentyear].notHybrid.map(elem=>elem.city))/arrayYear[i][currentyear].notHybrid.length;
+                let notHybrid_highway_avg = getSum(arrayYear[i][currentyear].notHybrid.map(elem=>elem.highway))/arrayYear[i][currentyear].notHybrid.length;
+                result[currentyear] = {
+                    hybrid: {
+                        city: hybrid_city_avg,
+                        highway: hybrid_highway_avg},
+                    notHybrid: {
+                        city: notHybrid_city_avg,
+                        highway: notHybrid_highway_avg
+                }
+            }
+        }
+            moreStats['avgMpgByYearAndHybrid'] = result;
